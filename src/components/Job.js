@@ -3,20 +3,26 @@ import axios from 'axios';
 import base_url from '../api/springbootapi';
 import {toast} from 'react-toastify'
 
-const Job = ( {singleJob, updateArray} ) => {
+const Job = ( {userId,singleJob, updateArray} ) => {
     
-    // const deleteJob = (jobIdToDelete) => {
-    //     axios.delete(`${base_url}/${jobIdToDelete}`).then(
-    //         (response) => {
-    //             console.log(response);
-    //             toast.success("Job Deleted Successfully!");
-    //             updateArray(jobIdToDelete);
-    //         }, (error) => {
-    //             console.log(error);
-    //             toast.error("Server Error! Job NOT Deleted");
-    //         }
-    //     );
-    // };
+    const postJob = (userId,jobId) => {
+        axios.post(`http://localhost:8090/apply`,{},{
+            params: {
+              userId,
+              jobId
+            }
+          }).then(
+            (response) => {
+                console.log(response);
+                toast.success("Job Applied Successfully!");
+            }, (error) => {
+                console.log(error);
+                toast.success("Job Applied Successfully");
+            }
+        );
+    };
+
+    
 
     
 
@@ -28,16 +34,17 @@ const Job = ( {singleJob, updateArray} ) => {
                     <CardText className="text-white">Role : {singleJob.role}</CardText>
                     <CardText className="text-white">Skills Required : {singleJob.salary}</CardText>
                     <CardText className="text-white">Job Description : {singleJob.description}</CardText>
-                    <CardText className="text-white">Location : {singleJob.level}</CardText>
-                    <CardText className="text-white">Location : {singleJob.expiry}</CardText>
-                    <CardText className="text-white">Location : {singleJob.skills.join()}</CardText>
-                    <Button href="https://forms.gle/Eyt9aQ4FDDB8HXB37" className="bg-success" style={{borderColor: '#ffffff'}}>Apply</Button>
+                    <CardText className="text-white">Level : {singleJob.level}</CardText>
+                    <CardText className="text-white">Expiry : {singleJob.expiry}</CardText>
+                    <CardText className="text-white">Skills : {singleJob.skills}</CardText>
+                    <CardText className="text-white">Candidates:</CardText>
+                    {/* {singleJob.candidates.map(function(d, idx){
+         return (<li className='list' key={idx}>{d.username}</li>)
+       })} */}
+                    <Button  onClick={() => postJob(userId,singleJob.id)} className="bg-success" style={{borderColor: '#ffffff'}}>Apply</Button>
                     <br/>
                     <Button className="bg-danger" style={{borderColor: '#ffffff'}}
-                    // onClick={() => {
-                    //     console.log(singleJob.jobId);
-                    //     deleteJob(singleJob.jobId);
-                    // }}
+                   
                     >Delete</Button>
                 </Card>
                 <br/><br/>

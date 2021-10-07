@@ -2,14 +2,49 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Redirect } from 'react-router';
 import { useHistory } from 'react-router-dom'
+import axios from "axios";
+import { useEffect } from "react";
+import { useState } from "react";
 
-export const Login=()=> {
+export const Login=(props)=> {
  
  
   const history = useHistory();
+  
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
  const onLogin=()=> {
+
+  
     
-    history.push(`/register`);
+   
+    axios({
+      method: "post",
+      url: "http://localhost:8090/login",
+      data: {
+        username:username,
+        password:password
+      }
+    })
+      .then(function (response) {
+        //handle success
+        console.log(response.data.username+"   "+username)
+        if(response.data.username==username)
+        {
+          console.log(response.data.id)
+          props.loginCallback({ role: response.data.role,id:response.data.id }) 
+          history.push({
+            pathname: '/job-openings',
+            state: { role: response.data.role,id:response.data.id }
+        });}
+        else
+           history.push('/register')
+          
+      })
+      .catch(function (response) {
+        //handle error
+        console.log(response);
+      });
     
   }
 
@@ -24,11 +59,11 @@ export const Login=()=> {
           <div className="form">
             <div className="form-group">
               <label htmlFor="username">Username</label>
-              <input type="text" name="username" placeholder="username" />
+              <input type="text" name="username" placeholder="username" onChange={(event)=>setUsername(event.target.value)} />
             </div>
             <div className="form-group">
               <label htmlFor="password">Password</label>
-              <input type="password" name="password" placeholder="password" />
+              <input type="password" name="password" placeholder="password" onChange={(event)=>setPassword(event.target.value)} />
             </div>
           </div>
         </div>

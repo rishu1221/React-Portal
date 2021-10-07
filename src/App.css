@@ -40,3 +40,17 @@
 .base-container{
   background-color: white;
 }
+
+.btn{
+  background-color: white;
+}
+
+.list{
+  color: white;
+
+}
+
+table {
+  width: 100%;
+  background-color: white;
+}

@@ -26,7 +26,7 @@ const PostJob=()=>{
 
     //Function to post data to server.
     const postDataToServer = (inputData) => {
-        axios.post(`${base_url}`, inputData).then(
+        axios.post(`http://localhost:8090/postjob`, inputData).then(
             (response) => {
                 console.log(response);
                 toast.success("Job Posted Successfully!");
@@ -43,11 +43,11 @@ const PostJob=()=>{
         <br/>
         <Form onSubmit={onFormSubmission} id="empty-all-fields">
             <FormGroup row>
-                <Label for="jobId" sm={2} className="text-white">Job Id</Label>
+                <Label for="role" sm={2} className="text-white">Role</Label>
                 <Col sm={10}>
-                    <Input type="number" placeholder="Enter Job Id here" id="jobId" required
+                    <Input type="text" placeholder="Enter Role here" id="role" required
                         onChange = {(e) => {
-                            setJob({...job, jobId:e.target.value})
+                            setJob({...job, role:e.target.value})
                         }}
                         />
                 </Col>
@@ -58,18 +58,18 @@ const PostJob=()=>{
                 <Col sm={10}>
                     <Input type="text" placeholder="Enter Company Name here" id="companyName" required
                     onChange = {(e) => {
-                        setJob({...job, companyName:e.target.value})
+                        setJob({...job, company:e.target.value})
                     }}
                     />
                 </Col>
             </FormGroup>    
 
             <FormGroup row>
-                <Label for="jobTitle" sm={2} className="text-white">Job Title</Label>
+                <Label for="salary" sm={2} className="text-white">Salary</Label>
                 <Col sm={10}>
-                    <Input type="text" placeholder="Enter Job Title here" id="jobTitle" required
+                    <Input type="text" placeholder="Enter Salary here" id="salary" required
                     onChange = {(e) => {
-                        setJob({...job, jobTitle:e.target.value})
+                        setJob({...job, salary:e.target.value})
                     }}
                     />
                 </Col>
@@ -78,9 +78,9 @@ const PostJob=()=>{
             <FormGroup row>
                 <Label for="skillKeywords" sm={2} className="text-white">Skill Keywords</Label>
                 <Col sm={10}>
-                    <Input type="textarea" placeholder="Enter Skill Keywords here" id="skillKeywords" required
+                    <Input type="textarea" placeholder="Enter Skill here" id="skillKeywords" required
                     onChange = {(e) => {
-                        setJob({...job, skillKeywords:e.target.value})
+                        setJob({...job, skills:e.target.value})
                     }}
                     />
                 </Col>
@@ -91,7 +91,7 @@ const PostJob=()=>{
                 <Col sm={10}>
                     <Input type="textarea" placeholder="Enter Job Description here" id="jobDescription" required
                     onChange = {(e) => {
-                        setJob({...job, jobDescription:e.target.value})
+                        setJob({...job, description:e.target.value})
                     }}
                     />
                 </Col>
@@ -109,7 +109,7 @@ const PostJob=()=>{
             </FormGroup>
             <br/>
             <Button type="submit" style={{backgroundColor:"#2f4f4f", borderColor: '#ffffff'}}
-            >Post Job / Update Existing Job with jobId</Button> <nbsp/>
+            >Post Job</Button> <nbsp/>
             <Button type="reset" style={{backgroundColor:"#2f4f4f", borderColor: '#ffffff'}}>Clear</Button>
         </Form>
         <br/><br/>
