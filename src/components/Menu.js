@@ -26,11 +26,20 @@ const Menu=(props)=>{
     pathname: "/allcandi",
     state: {userId:props.userId} // your data array of objects
   }} style={{ backgroundColor: '#2f4f4f', borderColor: '#ffffff'}} action>See Candidates</Link>}
-            <Link className="list-group-item list-group-item-action text-white" tag="a" to="/" style={{ backgroundColor: '#2f4f4f', borderColor: '#ffffff'}} action>log out</Link>
+            
             <Link className="list-group-item list-group-item-action text-white" tag="a" to={{
     pathname: "/updatepass",
     state: {userId:props.userId} // your data array of objects
   }} style={{ backgroundColor: '#2f4f4f', borderColor: '#ffffff'}} action>Update Password</Link>
+   <Link className="list-group-item list-group-item-action text-white" tag="a" to={{
+    pathname: "/resume",
+    state: {userId:props.userId} // your data array of objects
+  }} style={{ backgroundColor: '#2f4f4f', borderColor: '#ffffff'}} action>Update Resume</Link>
+  <Link className="list-group-item list-group-item-action text-white" tag="a" to="/" style={{ backgroundColor: '#2f4f4f', borderColor: '#ffffff'}} action>log out</Link>
+  {role==='candidate'&&<Link className="list-group-item list-group-item-action text-white" tag="a" to={{
+    pathname: "/blocked",
+    state: {userId:props.userId} // your data array of objects
+  }} style={{ backgroundColor: '#2f4f4f', borderColor: '#ffffff'}} action>Blocked Jobs</Link>}
             </ListGroup>
         </div>
         

@@ -64,7 +64,7 @@ const PostJob=()=>{
                 </Col>
             </FormGroup>    
 
-            <FormGroup row>
+            {/* <FormGroup row>
                 <Label for="salary" sm={2} className="text-white">Salary</Label>
                 <Col sm={10}>
                     <Input type="text" placeholder="Enter Salary here" id="salary" required
@@ -73,7 +73,7 @@ const PostJob=()=>{
                     }}
                     />
                 </Col>
-            </FormGroup>
+            </FormGroup> */}
 
             <FormGroup row>
                 <Label for="skillKeywords" sm={2} className="text-white">Skill Keywords</Label>
@@ -86,12 +86,23 @@ const PostJob=()=>{
                 </Col>
             </FormGroup>
 
+
             <FormGroup row>
                 <Label for="jobDescription" sm={2} className="text-white">Job Description</Label>
                 <Col sm={10}>
                     <Input type="textarea" placeholder="Enter Job Description here" id="jobDescription" required
                     onChange = {(e) => {
                         setJob({...job, description:e.target.value})
+                    }}
+                    />
+                </Col>
+            </FormGroup>
+            <FormGroup row>
+                <Label for="level" sm={2} className="text-white">Level</Label>
+                <Col sm={10}>
+                    <Input type="textarea" placeholder="Enter level" id="level" required
+                    onChange = {(e) => {
+                        setJob({...job, level:e.target.value})
                     }}
                     />
                 </Col>
@@ -103,6 +114,16 @@ const PostJob=()=>{
                     <Input type="text" placeholder="Enter Location here" id="location" required
                     onChange = {(e) => {
                         setJob({...job, location:e.target.value})
+                    }}
+                    />
+                </Col>
+            </FormGroup>
+            <FormGroup row>
+                <Label for="expiry" sm={2} className="text-white">Expiry</Label>
+                <Col sm={10}>
+                    <Input type="date" placeholder="Enter date" id="date" required
+                    onChange = {(e) => {
+                        setJob({...job, expiry:e.target.value})
                     }}
                     />
                 </Col>

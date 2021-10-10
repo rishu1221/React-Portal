@@ -17,6 +17,8 @@ import { useState } from 'react';
 import DisplayCandidateJobs from './components/Candidates';
 import AllCandidateJobs from './components/AllCandidatesJobs';
 import PasswordChange from './components/updatePassword';
+import ResumeUpload from './components/uploadResume';
+import DisplayJobBlocked from './components/DisplayBlockedJobs';
 function App() {
   const [islogin,setFlag]=useState(true)
   const [userId,setuserid]=useState('');
@@ -51,6 +53,8 @@ function App() {
               <Route path='/candidate' component={DisplayCandidateJobs} exact/>
               <Route path='/allcandi' component={AllCandidateJobs} exact/>
               <Route path='/updatepass' component={PasswordChange} exact/>
+              <Route path='/resume' component={ResumeUpload} exact/>
+              <Route path='/blocked' component={DisplayJobBlocked} exact/>
             </Col>
             
             

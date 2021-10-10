@@ -22,6 +22,20 @@ const Job = ( {userId,singleJob, updateArray} ) => {
         );
     };
 
+
+    const blockJob=(userId,jobId)=>{
+        
+        axios.post('http://localhost:8090/blockjob',{
+            userId:userId,jobId:jobId
+        }).then((res)=>{
+            if(res.data==='Job Blocked Successfully')
+               { toast.success("Job Blocked Successfully")
+                updateArray()}
+        },(err)=>{
+            toast.error("Error Blocking Job")
+        })
+    }
+
     
 
     
@@ -32,20 +46,18 @@ const Job = ( {userId,singleJob, updateArray} ) => {
                 <Card body style={{ backgroundColor: '#2f4f4f', borderColor: '#ffffff'}}>
                     <CardTitle className="text-white" tag="h5">{singleJob.company}</CardTitle>
                     <CardText className="text-white">Role : {singleJob.role}</CardText>
-                    <CardText className="text-white">Skills Required : {singleJob.salary}</CardText>
+                    {/* <CardText className="text-white">Skills Required : {singleJob.salary}</CardText> */}
                     <CardText className="text-white">Job Description : {singleJob.description}</CardText>
                     <CardText className="text-white">Level : {singleJob.level}</CardText>
                     <CardText className="text-white">Expiry : {singleJob.expiry}</CardText>
                     <CardText className="text-white">Skills : {singleJob.skills}</CardText>
-                    <CardText className="text-white">Candidates:</CardText>
+                    <CardText className="text-white">Location :{singleJob.location}</CardText>
                     {/* {singleJob.candidates.map(function(d, idx){
          return (<li className='list' key={idx}>{d.username}</li>)
        })} */}
                     <Button  onClick={() => postJob(userId,singleJob.id)} className="bg-success" style={{borderColor: '#ffffff'}}>Apply</Button>
                     <br/>
-                    <Button className="bg-danger" style={{borderColor: '#ffffff'}}
-                   
-                    >Delete</Button>
+                    <Button onClick={()=>blockJob(userId,singleJob.id)}>Block</Button>
                 </Card>
                 <br/><br/>
             </Container>
