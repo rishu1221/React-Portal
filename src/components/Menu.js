@@ -27,7 +27,10 @@ const Menu=(props)=>{
     state: {userId:props.userId} // your data array of objects
   }} style={{ backgroundColor: '#2f4f4f', borderColor: '#ffffff'}} action>See Candidates</Link>}
             <Link className="list-group-item list-group-item-action text-white" tag="a" to="/" style={{ backgroundColor: '#2f4f4f', borderColor: '#ffffff'}} action>log out</Link>
-
+            <Link className="list-group-item list-group-item-action text-white" tag="a" to={{
+    pathname: "/updatepass",
+    state: {userId:props.userId} // your data array of objects
+  }} style={{ backgroundColor: '#2f4f4f', borderColor: '#ffffff'}} action>Update Password</Link>
             </ListGroup>
         </div>
         
